@@ -1,13 +1,14 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
+  "todos": [
+    { "id": "1", "title": "Купить продукты", "completed": false },
+    { "id": "2", "title": "Выгулять собаку", "completed": true },
+    { "id": "3", "title": "Прочитать книгу", "completed": false }
   ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  "users": [
+    { "id": "1", "name": "Иван Иванов" },
+    { "id": "2", "name": "Анна Смирнова" }
   ],
-  "profile": {
-    "name": "typicode"
+  "settings": {
+    "theme": "светлая"
   }
 }
