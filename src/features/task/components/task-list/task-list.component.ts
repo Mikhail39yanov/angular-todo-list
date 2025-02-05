@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { TaskItemComponent } from '../task-item/task-item.component'
 import { TaskService } from '../../services/task.service'
 import { TaskFormComponent } from '../task-form/task-form.component'
+import { TaskRdo } from '../../models'
 
 @Component({
   selector: 'app-task-list',
@@ -12,10 +13,15 @@ import { TaskFormComponent } from '../task-form/task-form.component'
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
-  tasks = computed(() => this.taskService.tasks())
-  isLoading = computed(() => this.taskService.isLoading())
-
   constructor(private readonly taskService: TaskService) {}
+
+  get tasks() {
+    return this.taskService.tasks
+  }
+
+  get isLoading() {
+    return this.taskService.isLoading
+  }
 
   public ngOnInit() {
     this.taskService.index()
@@ -31,5 +37,9 @@ export class TaskListComponent implements OnInit {
 
   public addTask(title: string) {
     this.taskService.create(title)
+  }
+
+  public trackByTaskId(index: number, task: TaskRdo): string {
+    return task.id
   }
 }

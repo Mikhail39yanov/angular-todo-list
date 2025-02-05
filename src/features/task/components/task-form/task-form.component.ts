@@ -1,6 +1,13 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms'
+import {
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+  FormGroup,
+  FormControl,
+  NonNullableFormBuilder,
+} from '@angular/forms'
 
 @Component({
   selector: 'app-task-form',
@@ -12,19 +19,19 @@ import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angula
 export class TaskFormComponent implements OnInit {
   @Output() addTask = new EventEmitter<string>()
 
-  taskForm!: FormGroup
+  taskForm!: FormGroup<{ title: FormControl<string> }>
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: NonNullableFormBuilder) {}
 
   public ngOnInit() {
     this.taskForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3)]],
+      title: this.fb.control('', { validators: [Validators.required, Validators.minLength(3)] }),
     })
   }
 
   public onSubmit() {
     if (this.taskForm.valid) {
-      this.addTask.emit(this.taskForm.value.title!)
+      this.addTask.emit(this.taskForm.value.title)
       this.taskForm.reset()
     }
   }
