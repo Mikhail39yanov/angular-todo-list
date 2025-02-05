@@ -2,11 +2,12 @@ import { Component, OnInit, computed } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TaskItemComponent } from '../task-item/task-item.component'
 import { TaskService } from '../../services/task.service'
+import { TaskFormComponent } from '../task-form/task-form.component'
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent],
+  imports: [CommonModule, TaskItemComponent, TaskFormComponent],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
@@ -16,15 +17,19 @@ export class TaskListComponent implements OnInit {
 
   constructor(private readonly taskService: TaskService) {}
 
-  ngOnInit(): void {
+  public ngOnInit() {
     this.taskService.fetchTasks()
   }
 
-  toggleTaskCompleted(id: string): void {
+  public toggleTaskCompleted(id: string) {
     this.taskService.toggleTaskCompleted(id)
   }
 
-  deleteTask(id: string): void {
+  public deleteTask(id: string) {
     this.taskService.deleteTask(id)
+  }
+
+  public addTask(title: string) {
+    this.taskService.addTask(title)
   }
 }

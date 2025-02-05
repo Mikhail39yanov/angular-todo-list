@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { environment } from '../../../shared/config/environments'
+import { v4 as uuidv4 } from 'uuid'
 
 export interface Task {
   id: string
@@ -17,7 +18,7 @@ export class TaskService {
 
   constructor(private readonly http: HttpClient) {}
 
-  fetchTasks(): void {
+  public fetchTasks() {
     this.isLoading.set(true)
 
     this.http.get<Task[]>(`${environment.apiUrl}/todos`).subscribe({
@@ -29,12 +30,21 @@ export class TaskService {
     })
   }
 
-  toggleTaskCompleted(id: string): void {
+  public toggleTaskCompleted(id: string) {
     const updatedTasks = this.tasks().map((task) => (task.id === id ? { ...task, completed: !task.completed } : task))
     this.tasks.set(updatedTasks)
   }
 
-  deleteTask(id: string): void {
+  public deleteTask(id: string) {
     this.tasks.set(this.tasks().filter((task) => task.id !== id))
+  }
+
+  public addTask(title: string) {
+    const newTask: Task = {
+      id: uuidv4(),
+      title,
+      completed: false,
+    }
+    this.tasks.set([...this.tasks(), newTask])
   }
 }

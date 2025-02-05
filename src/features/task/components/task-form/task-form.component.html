@@ -1,0 +1,4 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="taskForm" class="task-form">
+  <input type="text" formControlName="title" placeholder="Введите новую задачу" />
+  <button type="submit" [disabled]="taskForm.invalid">Добавить</button>
+</form>

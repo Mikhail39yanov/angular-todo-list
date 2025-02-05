@@ -1,3 +1,5 @@
+<app-task-form (addTask)="addTask($event)"></app-task-form>
+
 <div *ngIf="isLoading(); else taskList" class="loader">
   <span>Загрузка...</span>
 </div>
