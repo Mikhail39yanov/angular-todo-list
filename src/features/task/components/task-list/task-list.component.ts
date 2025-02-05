@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core'
+import { Component, OnInit, computed } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TaskItemComponent } from '../task-item/task-item.component'
+import { TaskService } from '../../services/task.service'
 
 @Component({
   selector: 'app-task-list',
@@ -9,14 +10,21 @@ import { TaskItemComponent } from '../task-item/task-item.component'
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
-export class TaskListComponent {
-  tasks = signal([
-    { id: '1', title: 'Купить продукты', completed: false },
-    { id: '2', title: 'Выгулять собаку', completed: true },
-    { id: '3', title: 'Прочитать книгу', completed: false },
-  ])
+export class TaskListComponent implements OnInit {
+  tasks = computed(() => this.taskService.tasks())
+  isLoading = computed(() => this.taskService.isLoading())
 
-  toggleTaskCompleted(id: string) {
-    this.tasks.set(this.tasks().map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)))
+  constructor(private readonly taskService: TaskService) {}
+
+  ngOnInit(): void {
+    this.taskService.fetchTasks()
+  }
+
+  toggleTaskCompleted(id: string): void {
+    this.taskService.toggleTaskCompleted(id)
+  }
+
+  deleteTask(id: string): void {
+    this.taskService.deleteTask(id)
   }
 }

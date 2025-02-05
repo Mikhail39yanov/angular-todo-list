@@ -9,16 +9,20 @@ import { CommonModule } from '@angular/common'
   styleUrl: './task-item.component.scss',
 })
 export class TaskItemComponent {
+  @Input() tag: string = 'li'
   @Input() task!: {
     id: string
     title: string
     completed: boolean
   }
-  @Input() tag: string = 'li'
-
   @Output() toggleCompleted = new EventEmitter<string>()
+  @Output() deleteTask = new EventEmitter<string>()
 
   onToggle() {
     this.toggleCompleted.emit(this.task.id)
+  }
+
+  onDelete() {
+    this.deleteTask.emit(this.task.id)
   }
 }

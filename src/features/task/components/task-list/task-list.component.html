@@ -1,3 +1,9 @@
-<ul class="task-list">
-  <app-task-item *ngFor="let task of tasks()" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)"></app-task-item>
-</ul>
+<div *ngIf="isLoading(); else taskList" class="loader">
+  <span>Загрузка...</span>
+</div>
+
+<ng-template #taskList>
+  <ul class="task-list">
+    <app-task-item *ngFor="let task of tasks()" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)" (deleteTask)="deleteTask($event)" />
+  </ul>
+</ng-template>
