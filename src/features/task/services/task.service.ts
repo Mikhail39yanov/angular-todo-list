@@ -26,31 +26,39 @@ export class TaskService {
   }
 
   public updateCompleted(id: string): Observable<TaskRdo> {
+    this.isLoadingSubject.next(true)
+
     const currentTasks = this.tasksSubject.getValue()
 
     const task = currentTasks.find((task) => task.id === id)
     if (!task) return new Observable()
 
-    const updatedTask = { ...task, completed: !task.completed }
+    const updatedTask: TaskDdo = { ...task, completed: !task.completed }
 
     return this.http.patch<TaskRdo>(`${environment.apiUrl}/todos/${id}`, updatedTask).pipe(
       tap((updated) => {
         const updatedTasks = currentTasks.map((task) => (task.id === id ? updated : task))
         this.tasksSubject.next(updatedTasks)
       }),
+      finalize(() => this.isLoadingSubject.next(false)),
     )
   }
 
   public delete(id: string): Observable<void> {
+    this.isLoadingSubject.next(true)
+
     return this.http.delete<void>(`${environment.apiUrl}/todos/${id}`).pipe(
       tap(() => {
         const updatedTasks = this.tasksSubject.getValue().filter((task) => task.id !== id)
         this.tasksSubject.next(updatedTasks)
       }),
+      finalize(() => this.isLoadingSubject.next(false)),
     )
   }
 
   public create(title: string): Observable<TaskRdo> {
+    this.isLoadingSubject.next(true)
+
     const newTask: TaskDdo = {
       id: uuidv4(),
       title,
@@ -61,6 +69,7 @@ export class TaskService {
       tap((createdTask) => {
         this.tasksSubject.next([...this.tasksSubject.getValue(), createdTask])
       }),
+      finalize(() => this.isLoadingSubject.next(false)),
     )
   }
 }
