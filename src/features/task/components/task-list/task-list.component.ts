@@ -16,30 +16,30 @@ export class TaskListComponent implements OnInit {
   constructor(private readonly taskService: TaskService) {}
 
   get tasks() {
-    return this.taskService.tasks
+    return this.taskService.tasks$
   }
 
   get isLoading() {
-    return this.taskService.isLoading
+    return this.taskService.isLoading$
   }
 
   public ngOnInit() {
-    this.taskService.index()
+    this.taskService.index().subscribe()
   }
 
   public toggleTaskCompleted(id: string) {
-    this.taskService.updateCompleted(id)
+    this.taskService.updateCompleted(id).subscribe()
   }
 
   public deleteTask(id: string) {
-    this.taskService.delete(id)
+    this.taskService.delete(id).subscribe()
   }
 
   public addTask(title: string) {
-    this.taskService.create(title)
+    this.taskService.create(title).subscribe()
   }
 
-  public trackByTaskId(index: number, task: TaskRdo): string {
+  public trackByTaskId(index: number, task: TaskRdo) {
     return task.id
   }
 }

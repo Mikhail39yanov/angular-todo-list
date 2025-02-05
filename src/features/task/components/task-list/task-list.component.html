@@ -1,11 +1,14 @@
 <app-task-form (addTask)="addTask($event)"></app-task-form>
 
-<div *ngIf="isLoading(); else taskList" class="loader">
-  <span>Загрузка...</span>
-</div>
+
+<ng-container *ngIf="isLoading | async; else taskList">
+  <div class="loader">
+    <span>Загрузка...</span>
+  </div>
+</ng-container>
 
 <ng-template #taskList>
   <ul class="task-list">
-    <app-task-item *ngFor="let task of tasks(); trackBy: trackByTaskId" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)" (deleteTask)="deleteTask($event)" />
+    <app-task-item *ngFor="let task of tasks | async; trackBy: trackByTaskId" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)" (deleteTask)="deleteTask($event)" />
   </ul>
 </ng-template>
