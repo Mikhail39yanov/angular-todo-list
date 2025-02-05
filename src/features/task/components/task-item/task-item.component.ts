@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { TaskRdo } from '../../models'
 
 @Component({
   selector: 'app-task-item',
@@ -10,11 +11,8 @@ import { CommonModule } from '@angular/common'
 })
 export class TaskItemComponent {
   @Input() tag: string = 'li'
-  @Input() task!: {
-    id: string
-    title: string
-    completed: boolean
-  }
+  @Input() task!: TaskRdo
+
   @Output() toggleCompleted = new EventEmitter<string>()
   @Output() deleteTask = new EventEmitter<string>()
 

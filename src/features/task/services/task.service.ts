@@ -1,50 +1,68 @@
 import { Injectable, signal } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
 import { environment } from '../../../shared/config/environments'
 import { v4 as uuidv4 } from 'uuid'
-
-export interface Task {
-  id: string
-  title: string
-  completed: boolean
-}
+import { TaskRdo } from '../models/task.rdo'
+import { TaskDdo } from '../models'
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  tasks = signal<Task[]>([])
+  tasks = signal<TaskRdo[]>([])
   isLoading = signal<boolean>(false)
 
   constructor(private readonly http: HttpClient) {}
 
-  public fetchTasks() {
+  public index() {
     this.isLoading.set(true)
 
-    this.http.get<Task[]>(`${environment.apiUrl}/todos`).subscribe({
+    this.http.get<TaskRdo[]>(`${environment.apiUrl}/todos`).subscribe({
       next: (tasks) => {
         this.tasks.set(tasks)
         this.isLoading.set(false)
       },
-      error: () => this.isLoading.set(false),
+      error: (err) => {
+        console.error('Ошибка загрузки задач:', err)
+        this.isLoading.set(false)
+      },
     })
   }
 
-  public toggleTaskCompleted(id: string) {
-    const updatedTasks = this.tasks().map((task) => (task.id === id ? { ...task, completed: !task.completed } : task))
-    this.tasks.set(updatedTasks)
+  public updateCompleted(id: string) {
+    const task = this.tasks().find((task) => task.id === id)
+    if (!task) return
+
+    const updatedTask = { ...task, completed: !task.completed }
+
+    this.http.patch<TaskRdo>(`${environment.apiUrl}/todos/${id}`, updatedTask).subscribe({
+      next: (updated) => {
+        const updatedTasks = this.tasks().map((task) => (task.id === id ? updated : task))
+        this.tasks.set(updatedTasks)
+      },
+      error: (err) => console.error('Ошибка при обновлении задачи:', err),
+    })
   }
 
-  public deleteTask(id: string) {
-    this.tasks.set(this.tasks().filter((task) => task.id !== id))
+  public delete(id: string) {
+    this.http.delete(`${environment.apiUrl}/todos/${id}`).subscribe({
+      next: () => {
+        this.tasks.set(this.tasks().filter((task) => task.id !== id))
+      },
+      error: (err) => console.error('Ошибка при удалении задачи:', err),
+    })
   }
 
-  public addTask(title: string) {
-    const newTask: Task = {
+  public create(title: string) {
+    const newTask: TaskDdo = {
       id: uuidv4(),
       title,
       completed: false,
     }
-    this.tasks.set([...this.tasks(), newTask])
+
+    this.http.post<TaskRdo>(`${environment.apiUrl}/todos`, newTask).subscribe({
+      next: (createdTask) => {
+        this.tasks.set([...this.tasks(), createdTask])
+      },
+      error: (err) => console.error('Ошибка при добавлении задачи:', err),
+    })
   }
 }

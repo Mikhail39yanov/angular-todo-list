@@ -18,18 +18,18 @@ export class TaskListComponent implements OnInit {
   constructor(private readonly taskService: TaskService) {}
 
   public ngOnInit() {
-    this.taskService.fetchTasks()
+    this.taskService.index()
   }
 
   public toggleTaskCompleted(id: string) {
-    this.taskService.toggleTaskCompleted(id)
+    this.taskService.updateCompleted(id)
   }
 
   public deleteTask(id: string) {
-    this.taskService.deleteTask(id)
+    this.taskService.delete(id)
   }
 
   public addTask(title: string) {
-    this.taskService.addTask(title)
+    this.taskService.create(title)
   }
 }
