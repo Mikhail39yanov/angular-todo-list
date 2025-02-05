@@ -1,14 +1,32 @@
 {
   "todos": [
-    { "id": "1", "title": "Купить продукты", "completed": false },
-    { "id": "2", "title": "Выгулять собаку", "completed": true },
-    { "id": "3", "title": "Прочитать книгу", "completed": false }
+    {
+      "id": "0a985761-30d4-4fef-bb03-c89961730764",
+      "title": "Купить продукты",
+      "completed": false
+    },
+    {
+      "id": "c7d3d2f5-3450-4637-bfa6-deefc0d866bf",
+      "title": "Выгулять собаку",
+      "completed": true
+    },
+    {
+      "id": "272ed112-419e-4e84-9d7b-b613b676d9ae",
+      "title": "Прочитать книгу",
+      "completed": false
+    }
   ],
   "users": [
-    { "id": "1", "name": "Иван Иванов" },
-    { "id": "2", "name": "Анна Смирнова" }
+    {
+      "id": "d82ba2b9-2400-49da-a771-79f93278bd6e",
+      "name": "Иван Иванов"
+    },
+    {
+      "id": "e50f1a9f-35eb-4576-9099-24abc8b2bd4d",
+      "name": "Анна Смирнова"
+    }
   ],
   "settings": {
-    "theme": "светлая"
+    "theme": "light"
   }
 }

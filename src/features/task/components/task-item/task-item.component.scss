@@ -1,0 +1,17 @@
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+
+  input {
+    cursor: pointer;
+  }
+
+  &.completed span {
+    text-decoration: line-through;
+    color: gray;
+  }
+}
