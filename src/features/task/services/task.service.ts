@@ -11,6 +11,9 @@ export class TaskService {
   private tasksSubject = new BehaviorSubject<TaskRdo[]>([])
   tasks$ = this.tasksSubject.asObservable()
 
+  private taskSubject = new BehaviorSubject<TaskRdo | null>(null)
+  task$ = this.taskSubject.asObservable()
+
   private isLoadingSubject = new BehaviorSubject<boolean>(false)
   isLoading$ = this.isLoadingSubject.asObservable()
 
@@ -69,6 +72,15 @@ export class TaskService {
       tap((createdTask) => {
         this.tasksSubject.next([...this.tasksSubject.getValue(), createdTask])
       }),
+      finalize(() => this.isLoadingSubject.next(false)),
+    )
+  }
+
+  public show(id: string): Observable<TaskRdo> {
+    this.isLoadingSubject.next(true)
+
+    return this.http.get<TaskRdo>(`${environment.apiUrl}/todos/${id}`).pipe(
+      tap((task) => this.taskSubject.next(task)),
       finalize(() => this.isLoadingSubject.next(false)),
     )
   }

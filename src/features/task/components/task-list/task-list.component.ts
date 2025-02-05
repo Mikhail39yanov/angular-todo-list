@@ -4,6 +4,7 @@ import { TaskItemComponent } from '../task-item/task-item.component'
 import { TaskService } from '../../services/task.service'
 import { TaskFormComponent } from '../task-form/task-form.component'
 import { TaskRdo } from '../../models'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-task-list',
@@ -13,18 +14,16 @@ import { TaskRdo } from '../../models'
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
+  tasks$!: Observable<TaskRdo[]>
+  isLoading$!: Observable<boolean>
+
   constructor(private readonly taskService: TaskService) {}
-
-  get tasks() {
-    return this.taskService.tasks$
-  }
-
-  get isLoading() {
-    return this.taskService.isLoading$
-  }
 
   public ngOnInit() {
     this.taskService.index().subscribe()
+
+    this.tasks$ = this.taskService.tasks$
+    this.isLoading$ = this.taskService.isLoading$
   }
 
   public toggleTaskCompleted(id: string) {

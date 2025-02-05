@@ -1,0 +1,22 @@
+<h1>Детальная информация о задаче</h1>
+
+<!-- Пока идет загрузка -->
+<div *ngIf="isLoading$ | async; else taskContent">
+  <div class="loader">
+    <span>Загрузка...</span>
+  </div>
+</div>
+
+<!-- Основной контент -->
+<ng-template #taskContent>
+  <div *ngIf="task$ | async as TaskRdo; else noTask">
+    <p><strong>ID:</strong> {{ TaskRdo.id }}</p>
+    <p><strong>Название:</strong> {{ TaskRdo.title }}</p>
+    <p><strong>Статус:</strong> {{ TaskRdo.completed ? 'Выполнено' : 'Не выполнено' }}</p>
+  </div>
+</ng-template>
+
+<!-- Если задача не найдена -->
+<ng-template #noTask>
+  <p>Задача не найдена</p>
+</ng-template>

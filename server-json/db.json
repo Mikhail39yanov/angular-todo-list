@@ -8,17 +8,12 @@
     {
       "id": "c7d3d2f5-3450-4637-bfa6-deefc0d866bf",
       "title": "Выгулять собаку",
-      "completed": false
+      "completed": true
     },
     {
       "id": "272ed112-419e-4e84-9d7b-b613b676d9ae",
       "title": "Прочитать книгу",
       "completed": true
-    },
-    {
-      "id": "ffdc7c11-3bc4-425f-b757-a227a76e87fb",
-      "title": "вфыв",
-      "completed": false
     }
   ],
   "users": [
