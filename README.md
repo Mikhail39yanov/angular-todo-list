@@ -1,59 +1,82 @@
 # AngularTodoList
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+Этот проект создан с помощью [Angular CLI](https://github.com/angular/angular-cli) версии 19.1.5.
 
-## Development server
+## Установка зависимостей
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Перед началом работы установите зависимости:
 
 ```bash
-ng generate component component-name
+yarn install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Запуск сервера данных
+
+Для работы с локальной базой данных необходимо запустить `json-server`:
+
+```bash
+yarn server:json
+```
+
+Сервер будет работать по адресу [http://localhost:3000/](http://localhost:3000/).
+
+## Запуск проекта
+
+Чтобы запустить приложение в режиме разработки, выполните команду:
+
+```bash
+yarn start
+```
+
+После успешного запуска откройте браузер и перейдите по адресу [http://localhost:4200/](http://localhost:4200/).  
+Приложение автоматически перезапустится при внесении изменений в код.
+
+## Генерация компонентов
+
+Angular CLI позволяет быстро создавать компоненты, директивы и пайпы.  
+Чтобы создать новый компонент, выполните:
+
+```bash
+ng generate component имя-компонента
+```
+
+Чтобы посмотреть список доступных схем (например, для директив и пайпов), выполните:
 
 ```bash
 ng generate --help
 ```
 
-## Building
+## Сборка проекта
 
-To build the project run:
+Чтобы собрать проект, используйте команду:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Готовый код будет сохранен в папке `dist/`.  
+По умолчанию сборка выполняется с оптимизацией для лучшей производительности.
 
-## Running unit tests
+## Тестирование
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Юнит-тесты
+
+Для запуска юнит-тестов с [Karma](https://karma-runner.github.io) выполните:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+### End-to-end (e2e) тестирование
 
-For end-to-end (e2e) testing, run:
+Для запуска e2e-тестов выполните:
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+По умолчанию Angular CLI не включает e2e-фреймворк, выберите тот, который лучше всего подходит для вашего проекта.
 
-## Additional Resources
+## Дополнительные ресурсы
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Для получения дополнительной информации по Angular CLI посетите [официальную документацию](https://angular.dev/tools/cli).
