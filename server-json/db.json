@@ -3,17 +3,20 @@
     {
       "id": "0a985761-30d4-4fef-bb03-c89961730764",
       "title": "Купить продукты",
-      "completed": false
+      "completed": false,
+      "leftProperty": "Значение для левого свойства 1"
     },
     {
       "id": "c7d3d2f5-3450-4637-bfa6-deefc0d866bf",
       "title": "Выгулять собаку",
-      "completed": true
+      "completed": "true",
+      "leftProperty": "Значение для левого свойства 2"
     },
     {
       "id": "272ed112-419e-4e84-9d7b-b613b676d9ae",
       "title": "Прочитать книгу",
-      "completed": true
+      "completed": "true",
+      "leftProperty": "Значение для левого свойства 3"
     }
   ],
   "users": [

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common'
 import { TaskItemComponent } from '../task-item/task-item.component'
 import { TaskService } from '../../services/task.service'
 import { TaskFormComponent } from '../task-form/task-form.component'
-import { TaskRdo } from '../../models'
 import { Observable } from 'rxjs'
+import { TaskRdo } from '../../models'
 
 @Component({
   selector: 'app-task-list',
@@ -24,6 +24,7 @@ export class TaskListComponent implements OnInit {
 
     this.tasks$ = this.taskService.tasks$
     this.isLoading$ = this.taskService.isLoading$
+    console.log(this.tasks$)
   }
 
   public toggleTaskCompleted(id: string) {
