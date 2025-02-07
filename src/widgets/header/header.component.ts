@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router'
       <nav>
         <a routerLink="/home">Home</a>
         <a routerLink="/tasks">Todo List</a>
+        <a [routerLink]="['/protected']" [queryParams]="{ access: 'secret' }">Protected</a>
       </nav>
     </header>
   `,
