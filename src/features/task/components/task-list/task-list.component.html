@@ -11,7 +11,9 @@
 
   <ng-template #taskList>
     <ul class="task-list">
-      <app-task-item *ngFor="let task of tasks$ | async; trackBy: trackByTaskId" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)" (deleteTask)="deleteTask($event)"></app-task-item>
+      <app-task-item *ngFor="let task of tasks$ | async; trackBy: trackByTaskId" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)" (deleteTask)="deleteTask($event)">
+        <a [routerLink]="['/tasks', task.id]">{{ task.title }}</a>
+      </app-task-item>
     </ul>
   </ng-template>
 </app-task-container>

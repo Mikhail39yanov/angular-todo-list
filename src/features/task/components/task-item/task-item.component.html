@@ -1,4 +1,12 @@
-<ng-container [ngSwitch]="tag">
+<li class="task-item" [class.completed]="task.completed">
+  <input type="checkbox" [checked]="task.completed" (change)="onToggle()" />
+  <ng-content></ng-content>
+  <button class="delete-btn" (click)="onDelete()">🗑</button>
+</li>
+
+<!-- Опционально с ngSwitch-->
+
+<!-- <ng-container [ngSwitch]="tag">
   <li *ngSwitchCase="'li'" class="task-item" [class.completed]="task.completed">
     <input type="checkbox" [checked]="task.completed" (change)="onToggle()" />
     <a [routerLink]="['/tasks', task.id]">{{ task.title }}</a>
@@ -10,4 +18,4 @@
     <a [routerLink]="['/tasks', task.id]">{{ task.title }}</a>
     <button class="delete-btn" (click)="onDelete()">🗑</button>
   </div>
-</ng-container>
+</ng-container> -->

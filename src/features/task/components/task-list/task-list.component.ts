@@ -6,11 +6,12 @@ import { TaskFormComponent } from '../task-form/task-form.component'
 import { Observable } from 'rxjs'
 import { TaskRdo } from '../../models'
 import { TaskContainerComponent } from '../task-container/task-container.component'
+import { RouterModule } from '@angular/router'
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent, TaskFormComponent, TaskContainerComponent],
+  imports: [RouterModule, CommonModule, TaskItemComponent, TaskFormComponent, TaskContainerComponent],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
