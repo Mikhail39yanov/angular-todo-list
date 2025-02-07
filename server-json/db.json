@@ -4,19 +4,22 @@
       "id": "0a985761-30d4-4fef-bb03-c89961730764",
       "title": "Купить продукты",
       "completed": false,
-      "leftProperty": "Значение для левого свойства 1"
+      "leftProperty": "Значение для левого свойства 1",
+      "createdAt": "2023-10-01T10:00:00Z"
     },
     {
       "id": "c7d3d2f5-3450-4637-bfa6-deefc0d866bf",
       "title": "Выгулять собаку",
-      "completed": "true",
-      "leftProperty": "Значение для левого свойства 2"
+      "completed": true,
+      "leftProperty": "Значение для левого свойства 2",
+      "createdAt": "2023-10-02T14:30:00Z"
     },
     {
       "id": "272ed112-419e-4e84-9d7b-b613b676d9ae",
       "title": "Прочитать книгу",
-      "completed": "true",
-      "leftProperty": "Значение для левого свойства 3"
+      "completed": true,
+      "leftProperty": "Значение для левого свойства 3",
+      "createdAt": "2023-10-03T09:15:00Z"
     }
   ],
   "users": [

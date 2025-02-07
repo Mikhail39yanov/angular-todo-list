@@ -1,8 +1,9 @@
 <li class="task-item" [class.completed]="task.completed">
   <input type="checkbox" [checked]="task.completed" (change)="onToggle()" />
   <span [appCompletedTask]="task.completed">
-    <ng-content></ng-content> <!-- ✅ Контент задачи теперь реагирует на completed -->
+    <ng-content></ng-content> <!-- Контент задачи теперь реагирует на completed (Работа директивы appCompletedTask) -->
   </span>
+  <span>{{ task.createdAt | dateFormat }}</span>
   <button class="delete-btn" (click)="onDelete()">🗑</button>
 </li>
 

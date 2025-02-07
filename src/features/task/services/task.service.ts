@@ -69,6 +69,7 @@ export class TaskService {
       id: uuidv4(),
       title,
       completed: false,
+      createdAt: new Date().toString(),
     }
 
     return this.http.post<TaskRdo>(`${environment.apiUrl}/todos`, newTask).pipe(
