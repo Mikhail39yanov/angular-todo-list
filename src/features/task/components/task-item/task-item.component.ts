@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TaskRdo } from '../../models'
 import { RouterModule } from '@angular/router'
+import { CompletedTaskDirective } from '../../directives/completed-task.directive'
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [CommonModule, CompletedTaskDirective],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.scss',
 })
