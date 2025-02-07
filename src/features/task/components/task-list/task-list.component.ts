@@ -5,11 +5,12 @@ import { TaskService } from '../../services/task.service'
 import { TaskFormComponent } from '../task-form/task-form.component'
 import { Observable } from 'rxjs'
 import { TaskRdo } from '../../models'
+import { TaskContainerComponent } from '../task-container/task-container.component'
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent, TaskFormComponent],
+  imports: [CommonModule, TaskItemComponent, TaskFormComponent, TaskContainerComponent],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
@@ -24,7 +25,6 @@ export class TaskListComponent implements OnInit {
 
     this.tasks$ = this.taskService.tasks$
     this.isLoading$ = this.taskService.isLoading$
-    console.log(this.tasks$)
   }
 
   public toggleTaskCompleted(id: string) {
