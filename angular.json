@@ -20,26 +20,37 @@
             "outputPath": "dist/angular-todo-list",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@prizm-ui/icons/src/styles/icons-base",
+                "output": "assets/prizm/icons/base"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@prizm-ui/icons/src/styles/icons-full",
+                "output": "assets/prizm/icons/full"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@prizm-ui/theme/src/styles/styles.less",
+              "node_modules/@prizm-ui/components/src/styles/styles.less",
+              "node_modules/@prizm-ui/icons/src/styles/icons-base/prizm-base-icons.css",
+              "node_modules/@prizm-ui/icons/src/styles/icons-base/prizm-base-icons-location.css",
+              "node_modules/@prizm-ui/icons/src/styles/icons-full/prizm-full-icons.css",
+              "node_modules/@prizm-ui/icons/src/styles/icons-full/prizm-full-icons-location.css",
+              "node_modules/@prizm-ui/theme/src/styles/styles.less",
+              "node_modules/@prizm-ui/components/src/styles/styles.less"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -83,10 +94,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -95,9 +103,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }

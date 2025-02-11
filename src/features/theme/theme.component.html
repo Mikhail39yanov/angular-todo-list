@@ -1,0 +1,4 @@
+<div>
+  <div class="title">Текущее значение: {{ themeName }}</div>
+  <prizm-toggle [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" (ngModelChange)="onToggleChange()"></prizm-toggle>
+</div>
