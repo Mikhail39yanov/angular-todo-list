@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core'
+import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { PrizmToggleComponent } from '@prizm-ui/components'
 import { FormsModule } from '@angular/forms'
@@ -12,7 +12,6 @@ import { ThemeService } from './theme.service'
   styleUrl: './theme.component.scss',
 })
 export class ThemeComponent {
-  @ViewChild('themeContainer', { static: true, read: ElementRef }) el!: ElementRef
   public value = false
   public themeName = 'Светлая'
 
