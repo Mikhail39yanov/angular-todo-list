@@ -3,17 +3,21 @@
 
   <app-task-form (addTask)="addTask($event)"></app-task-form>
 
-  <ng-container *ngIf="isLoading$ | async; else taskList">
-    <div class="loader">
-      <span>Загрузка...</span>
-    </div>
-  </ng-container>
-
-  <ng-template #taskList>
-    <ul class="task-list">
-      <app-task-item *ngFor="let task of tasks$ | async; trackBy: trackByTaskId" [task]="task" (toggleCompleted)="toggleTaskCompleted($event)" (deleteTask)="deleteTask($event)">
-        <a [routerLink]="['/tasks', task.id]">{{ task.title }}</a>
-      </app-task-item>
-    </ul>
-  </ng-template>
+  @if(isLoading | async){
+  <div class="loader">
+    <span>Загрузка...</span>
+  </div>
+  } @else {
+  <ul class="task-list">
+    @for (task of tasks | async; track task.id) {
+    <app-task-item
+      [task]="task"
+      (toggleCompleted)="toggleTaskCompleted($event)"
+      (deleteTask)="deleteTask($event)"
+    >
+      <a [routerLink]="['/tasks', task.id]">{{ task.title }}</a>
+    </app-task-item>
+    }
+  </ul>
+  }
 </app-task-container>

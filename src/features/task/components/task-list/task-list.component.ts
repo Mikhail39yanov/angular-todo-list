@@ -16,16 +16,16 @@ import { RouterModule } from '@angular/router'
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
-  tasks$!: Observable<TaskRdo[]>
-  isLoading$!: Observable<boolean>
+  tasks!: Observable<TaskRdo[]>
+  isLoading!: Observable<boolean>
 
   constructor(private readonly taskService: TaskService) {}
 
   public ngOnInit() {
     this.taskService.index().subscribe()
 
-    this.tasks$ = this.taskService.tasks$
-    this.isLoading$ = this.taskService.isLoading$
+    this.tasks = this.taskService.tasks$
+    this.isLoading = this.taskService.isLoading$
   }
 
   public toggleTaskCompleted(id: string) {
@@ -38,9 +38,5 @@ export class TaskListComponent implements OnInit {
 
   public addTask(title: string) {
     this.taskService.create(title).subscribe()
-  }
-
-  public trackByTaskId(index: number, task: TaskRdo) {
-    return task.id
   }
 }

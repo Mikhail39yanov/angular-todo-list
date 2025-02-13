@@ -8,7 +8,7 @@ import { CustomRadioSizeDirective } from './custom.directive'
   selector: 'app-radio-button',
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.less',
-  imports: [CommonModule, ReactiveFormsModule, PrizmRadioButtonComponent, CustomRadioSizeDirective],
+  imports: [CommonModule, ReactiveFormsModule, PrizmRadioButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
