@@ -1,4 +1,4 @@
-import { Component, OnInit, computed } from '@angular/core'
+import { Component, OnInit, computed, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TaskItemComponent } from '../task-item/task-item.component'
 import { TaskService } from '../../services/task.service'
@@ -16,10 +16,12 @@ import { RouterModule } from '@angular/router'
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
+  private taskService = inject(TaskService)
   tasks!: Observable<TaskRdo[]>
   isLoading!: Observable<boolean>
 
-  constructor(private readonly taskService: TaskService) {}
+  constructor() // private readonly taskService: TaskService
+  {}
 
   public ngOnInit() {
     this.taskService.index().subscribe()
