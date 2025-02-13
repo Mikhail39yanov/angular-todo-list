@@ -1,0 +1,59 @@
+@sizeL: 24px;
+@sizeM: 20px;
+@sizeS: 16px;
+
+@dotSizeL: 16px;
+@dotSizeM: 12px;
+@dotSizeS: 10px;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  // ::ng-deep prizm-radio-button[radio-size='s'] .container .radio-button {
+  //   height: @sizeS;
+  //   width: @sizeS;
+  //   min-width: @sizeS;
+  //   min-height: @sizeS;
+  // }
+
+  // ::ng-deep prizm-radio-button[radio-size='s'] .container .radio-button__mark {
+  //   height: @sizeS;
+  //   width: @sizeS;
+  //   min-width: @sizeS;
+  //   min-height: @sizeS;
+  // }
+  ::ng-deep prizm-radio-button {
+    .title {
+      margin-left: 8px;
+      word-break: break-word;
+
+      color: var(--prizm-text-icon-secondary);
+    }
+
+    &[radio-size='l'] {
+      .container {
+        .label {
+          font-size: 12px;
+          line-height: @sizeL;
+        }
+
+        .native-radio-button,
+        .radio-button {
+          height: @sizeL;
+          width: @sizeL;
+          min-width: @sizeL;
+          min-height: @sizeL;
+
+          &__mark {
+            height: @dotSizeL;
+            width: @dotSizeL;
+            min-width: @dotSizeL;
+            min-height: @dotSizeL;
+          }
+        }
+      }
+    }
+  }
+}
